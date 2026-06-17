@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S SocialLite</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons for Facebook style icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-100 text-gray-800 font-sans pb-16">
+
+  <!-- ==========================================
+       ১. টপ ফিক্সড নেভিগেশন বার (Top Navbar)
+       ========================================== -->
+  <div class="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between shadow-sm">
+    <div class="flex items-center space-x-2">
+      <div class="bg-blue-600 text-white font-bold rounded-full w-9 h-9 flex items-center justify-center text-xl shadow-md">
+        S
+      </div>
+      <span class="text-blue-600 font-bold text-2xl tracking-tight">SocialLite</span>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button class="bg-gray-100 hover:bg-gray-200 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-600">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button onclick="switchView('messages')" class="bg-gray-100 hover:bg-gray-200 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-600 relative">
+        <i class="fa-solid fa-comment-dots"></i>
+      </button>
+      <button class="bg-gray-100 hover:bg-gray-200 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-600 relative">
+        <i class="fa-solid fa-bell"></i>
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center scale-90">1</span>
+      </button>
+      <button class="bg-gray-100 hover:bg-gray-200 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-600">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ২. নিউজফিড ভিউ (FEED VIEW - Screen 1)
+       ========================================== -->
+  <div id="feedView" class="max-w-xl mx-auto mt-2 px-2 space-y-3 block">
+    
+    <!-- স্টোরি সেকশন (Horizontal Stories) -->
+    <div class="flex space-x-2 overflow-x-auto scrollbar-hide py-1">
+      <!-- ক্রিয়েট স্টোরি কার্ড -->
+      <div class="min-w-[100px] h-40 bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col justify-between overflow-hidden relative shrink-0">
+        <div class="h-2/3 bg-gray-300 bg-cover bg-center" style="background-image: url('https://picsum.photos/200')"></div>
+        <div class="h-1/3 pt-4 pb-1 text-center relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white rounded-full w-8 h-8 border-4 border-white flex items-center justify-center shadow-md cursor-pointer">
+            <i class="fa-solid fa-plus text-sm"></i>
+          </div>
+          <span class="text-xs font-bold text-gray-700">Add Story</span>
+        </div>
+      </div>
+      <!-- ফ্রেন্ড স্টোরি কার্ড ১ -->
+      <div class="min-w-[100px] h-40 rounded-2xl shadow-sm overflow-hidden bg-cover bg-center relative shrink-0" style="background-image: url('https://picsum.photos/201')">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <span class="absolute bottom-2 left-2 text-white font-semibold text-xs truncate w-11/12">Mst Sathi</span>
+      </div>
+      <!-- ফ্রেন্ড স্টোরি কার্ড ২ -->
+      <div class="min-w-[100px] h-40 rounded-2xl shadow-sm overflow-hidden bg-cover bg-center relative shrink-0" style="background-image: url('https://picsum.photos/202')">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <span class="absolute bottom-2 left-2 text-white font-semibold text-xs truncate w-11/12">Md Nahid Admin</span>
+      </div>
+    </div>
+
+    <!-- পোস্ট করার বক্স (Create Post Box) -->
+    <div class="bg-white rounded-xl shadow-sm p-4 border border-gray-200 space-y-3">
+      <div class="flex items-center space-x-3">
+        <img class="w-10 h-10 rounded-full border border-gray-200" src="https://picsum.photos/100" alt="Profile">
+        <input type="text" placeholder="কি মনে আসছে?" class="w-full bg-gray-100 hover:bg-gray-200/80 rounded-full py-2.5 px-4 text-sm text-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400 cursor-pointer">
+      </div>
+      <hr class="border-gray-100">
+      <div class="flex items-center justify-between text-xs font-bold text-gray-600 pt-1 px-2">
+        <button class="flex items-center space-x-2 hover:bg-gray-50 py-1.5 px-3 rounded-lg cursor-pointer text-green-600">
+          <i class="fa-solid fa-image text-lg"></i> <span>Photo</span>
+        </button>
+        <button class="flex items-center space-x-2 hover:bg-gray-50 py-1.5 px-3 rounded-lg cursor-pointer text-yellow-500">
+          <i class="fa-solid fa-face-smile text-lg"></i> <span>Feeling</span>
+        </button>
+        <button class="flex items-center space-x-2 hover:bg-gray-50 py-1.5 px-3 rounded-lg cursor-pointer text-red-500">
+          <i class="fa-solid fa-video text-lg"></i> <span>Live</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- সিঙ্গেল পোস্ট কার্ড (Post Card Timeline) -->
+    <div id="postsTimeline" class="space-y-3">
+      <!-- ডেমো পোস্ট (ডাটাবেজ থেকে পরে রিয়েল ডাটা আসবে) -->
+      <div class="bg-white rounded-xl shadow-sm p-4 border border-gray-200 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <img class="w-10 h-10 rounded-full border" src="https://picsum.photos/150" alt="Author">
+            <div>
+              <div class="flex items-center space-x-1">
+                <span class="font-bold text-sm text-gray-900">Md Nahid Admin</span>
+                <i class="fa-solid fa-circle-check text-blue-500 text-xs"></i>
+              </div>
+              <span class="text-xs text-gray-500 flex items-center space-x-1">
+                <i class="fa-solid fa-earth-americas"></i> <span>5m</span>
+              </span>
+            </div>
+          </div>
+          <button class="text-gray-500 hover:bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer">
+            <i class="fa-solid fa-ellipsis"></i>
+          </button>
+        </div>
+        <p class="text-sm text-gray-800 leading-relaxed">
+          Massege system on ✅ এখন সবাই ম্যাসেজ এ কথা বলতে পারবেন। ⚡️😊🫶
+        </p>
+        <div class="flex items-center justify-between text-xs text-gray-500 px-1 py-1 border-b border-gray-100">
+          <div class="flex items-center space-x-1">
+            <i class="fa-solid fa-heart text-red-500 text-sm"></i>
+            <span class="font-medium">1</span>
+          </div>
+          <span>0 comments</span>
+        </div>
+        <div class="flex items-center justify-between text-xs font-bold text-gray-600 pt-1">
+          <button class="flex items-center justify-center space-x-2 hover:bg-gray-50 py-2 w-1/3 rounded-lg cursor-pointer">
+            <i class="fa-regular fa-thumbs-up text-base"></i> <span>Like</span>
+          </button>
+          <button class="flex items-center justify-center space-x-2 hover:bg-gray-50 py-2 w-1/3 rounded-lg cursor-pointer">
+            <i class="fa-regular fa-comment text-base"></i> <span>Comment</span>
+          </button>
+          <button class="flex items-center justify-center space-x-2 hover:bg-gray-50 py-2 w-1/3 rounded-lg cursor-pointer">
+            <i class="fa-regular fa-share-from-square text-base"></i> <span>Share</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==========================================
+       ৩. মেসেজেস ইনবক্স ভিউ (MESSAGES VIEW - Screen 2)
+       ========================================== -->
+  <div id="messagesView" class="max-w-xl mx-auto mt-2 px-2 hidden">
+    <div class="bg-white rounded-xl shadow-sm p-4 border border-gray-200">
+      <h2 class="text-2xl font-black text-gray-900 mb-4 tracking-tight">Messages</h2>
+      
+      <!-- ইনবক্স চ্যাট লিস্ট আইটেম -->
+      <div class="space-y-1">
+        <div class="flex items-center justify-between p-2 hover:bg-gray-50 rounded-xl cursor-pointer transition">
+          <div class="flex items-center space-x-3">
+            <div class="relative">
+              <img class="w-12 h-12 rounded-full border" src="https://picsum.photos/120" alt="User">
+              <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></div>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-gray-900">Mst Sathi</h4>
+              <p class="text-xs text-gray-500 font-medium truncate max-w-[180px]">Hmm</p>
+            </div>
+          </div>
+          <span class="text-xs text-gray-400 font-semibold self-start mt-1">29m</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ৪. বটম ফিক্সড নেভিগেশন বার (Bottom Nav)
+       ========================================== -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg px-4 py-2 flex items-center justify-between z-50">
+    <button onclick="switchView('feed')" id="nav-feed" class="flex flex-col items-center justify-center text-blue-600 w-12 cursor-pointer transition">
+      <i class="fa-solid fa-house text-xl"></i>
+    </button>
+    <button onclick="switchView('friends')" id="nav-friends" class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-600 w-12 cursor-pointer transition">
+      <i class="fa-solid fa-user-group text-xl"></i>
+    </button>
+    <button class="flex flex-col items-center justify-center text-white bg-blue-600 hover:bg-blue-700 w-10 h-10 rounded-xl shadow-md cursor-pointer transition">
+      <i class="fa-solid fa-plus text-xl"></i>
+    </button>
+    <button onclick="switchView('messages')" id="nav-messages" class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-600 w-12 cursor-pointer transition">
+      <i class="fa-solid fa-message text-xl"></i>
+    </button>
+    <button onclick="switchView('notifications')" id="nav-notifications" class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-600 w-12 cursor-pointer transition">
+      <i class="fa-solid fa-bell text-xl"></i>
+    </button>
+    <button onclick="switchView('profile')" id="nav-profile" class="flex flex-col items-center justify-center text-gray-400 hover:text-gray-600 w-12 cursor-pointer transition">
+      <i class="fa-solid fa-circle-user text-xl"></i>
+    </button>
+  </div>
+
+  <!-- ==========================================
+       ৫. ভিউ চেঞ্জ করার ম্যাজিক জাভাস্ক্রিপ্ট (JS)
+       ========================================== -->
+  <script>
+    function switchView(viewName) {
+      const feedView = document.getElementById('feedView');
+      const messagesView = document.getElementById('messagesView');
+      
+      const navFeed = document.getElementById('nav-feed');
+      const navMessages = document.getElementById('nav-messages');
+
+      // সব স্ক্রিন প্রথমে হাইড করি
+      feedView.classList.add('hidden');
+      messagesView.classList.add('hidden');
+      
+      // সব বাটনের কালার আগে ধূসর (inactive) করি
+      navFeed.className = navFeed.className.replace('text-blue-600', 'text-gray-400');
+      navMessages.className = navMessages.className.replace('text-blue-600', 'text-gray-400');
+
+      // যে ভিউ সিলেক্ট করা হয়েছে তা শো করি এবং কালার ব্লু করি
+      if (viewName === 'feed') {
+        feedView.classList.remove('hidden');
+        navFeed.className = navFeed.className.replace('text-gray-400', 'text-blue-600');
+      } else if (viewName === 'messages') {
+        messagesView.classList.remove('hidden');
+        navMessages.className = navMessages.className.replace('text-gray-400', 'text-blue-600');
+      }
+    }
+  </script>
+</body>
+</html>

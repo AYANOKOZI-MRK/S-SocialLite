@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S Social Live - Login</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <div class="container flex flex-col md:flex-row items-center justify-between max-w-5xl px-6 space-y-8 md:space-y-0">
+    
+    <!-- S Social Live ব্র্যান্ডিং -->
+    <div class="left-side text-center md:text-left md:w-1/2">
+      <h1 class="text-blue-600 text-5xl font-bold tracking-wider mb-3">S Social Live</h1>
+      <p class="text-gray-700 text-xl md:text-2xl font-normal leading-tight">
+        S Social Live সাহায্য করে আপনার জীবনের মানুষের সাথে সংযুক্ত থাকতে এবং শেয়ার করতে।
+      </p>
+    </div>
+
+    <!-- ডান পাশের লগইন ফর্ম -->
+    <div class="right-side md:w-2/5 w-full">
+      <div class="bg-white p-6 rounded-lg shadow-xl space-y-4">
+        <form id="loginForm" class="space-y-4">
+          <input type="email" id="email" placeholder="ইমেল ঠিকানা বা ফোন নম্বর" required 
+            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+          
+          <input type="password" id="password" placeholder="পাসওয়ার্ড" required 
+            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+          
+          <button type="submit" 
+            class="w-full bg-blue-600 text-white font-bold py-3 rounded-md text-xl hover:bg-blue-700 transition cursor-pointer">
+            লগ ইন করুন
+          </button>
+        </form>
+
+        <div class="text-center">
+          <a href="#" class="text-blue-500 text-sm hover:underline">পাসওয়ার্ড ভুলে গেছেন?</a>
+        </div>
+        
+        <hr class="border-gray-200">
+
+        <div class="text-center">
+          <button class="bg-green-500 hover:bg-green-600 text-white font-bold px-5 py-3 rounded-md text-lg transition cursor-pointer">
+            নতুন অ্যাকাউন্ট তৈরি করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('🎉 S Social Live-এ আপনার লগইন সফল হয়েছে!');
+          localStorage.setItem('token', data.token); 
+        } else {
+          alert('❌ ভুল ইমেল বা পাসওয়ার্ড: ' + (data.error || data.message));
+        }
+      } catch (err) {
+        alert('❌ ব্যাকএন্ড সার্ভার বন্ধ আছে অথবা কানেক্ট করা যাচ্ছে না!');
+      }
+    });
+  </script>
+</body>
+</html>
